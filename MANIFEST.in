@@ -1,0 +1,3 @@
+include *.py MANIFEST.in *.ini
+global-include *.txt *.rst
+exclude .gitignore
