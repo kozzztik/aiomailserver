@@ -154,7 +154,7 @@ class ExtendedSMTP(SMTP):
             yield from self.push('503 Error: send HELO first')
             return
         log.debug('===> RCPT %s', arg)
-        if not self.mailfrom:
+        if not self.message.mailfrom:
             yield from self.push('503 Error: need MAIL command')
             return
         syntaxerr = '501 Syntax: RCPT TO: <address>'
@@ -191,7 +191,7 @@ class ExtendedSMTP(SMTP):
         if not self.seen_greeting:
             yield from self.push('503 Error: send HELO first')
             return
-        if not self.rcpttos:
+        if not self.message.rcpttos:
             yield from self.push('503 Error: need RCPT command')
             return
         if arg:
